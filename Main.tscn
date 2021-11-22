@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Mob.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Main.gd" type="Script" id=3]
+[ext_resource path="res://maps/map1.png" type="Texture" id=4]
+[ext_resource path="res://maps/map1mesh.png" type="Texture" id=5]
+[ext_resource path="res://EnvMeshMap1.gd" type="Script" id=6]
+[ext_resource path="res://PC.tscn" type="PackedScene" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 20, 20 )
+
+[node name="Main" type="Node"]
+script = ExtResource( 3 )
+Mob = ExtResource( 2 )
+
+[node name="startposition" type="Position2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 4.0
+margin_top = -59.0
+margin_right = 214.0
+margin_bottom = 70.0
+color = Color( 0.921569, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Map1" type="StaticBody2D" parent="."]
+
+[node name="EnvMeshMap1" type="Sprite" parent="Map1"]
+texture = ExtResource( 5 )
+script = ExtResource( 6 )
+
+[node name="EnvCollisionMap1" type="CollisionPolygon2D" parent="Map1"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="EnvMap1" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 4 )
+
+[node name="Box" type="StaticBody2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Box"]
+margin_left = 94.0
+margin_top = -167.0
+margin_right = 134.0
+margin_bottom = -127.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box"]
+position = Vector2( 114, -147 )
+shape = SubResource( 1 )
+
+[node name="PC" parent="." instance=ExtResource( 7 )]
